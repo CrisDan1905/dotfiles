@@ -1,48 +1,56 @@
+##### Things that should run even in non-interactive shells (PATH, exports, etc)
+# export PATH="$HOME/.local/bin:$PATH"
+
+##### Stop here if shell is not interactive
+[[ $- != *i* ]] && return
+
+# ---- Persistent command history ----
+HISTFILE=~/.zsh_history
+HISTSIZE=10000        # Number of lines kept in memory
+SAVEHIST=10000        # Number of lines saved to file
+
+setopt APPEND_HISTORY         # Append to the history file, don't overwrite
+setopt SHARE_HISTORY          # Share history across all open terminals
+setopt HIST_IGNORE_DUPS       # Ignore duplicate entries
+setopt HIST_IGNORE_SPACE      # Ignore commands starting with a space
+setopt HIST_VERIFY            # Don't execute immediately when selecting from history
+
+# --- Basic options (optional but nice) ---
+setopt autocd           # cd just by typing the directory name
+setopt correct          # try to correct minor typos in commands
+setopt histignoredups   # don't store duplicate history entries
+setopt sharehistory     # share history between shells
+
+# --- Aliases ---
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias lla='ls -lA'
+alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+
+# --- Completion system ---
+autoload -Uz compinit
+compinit
+
+# --- zsh-autosuggestions ---
+# (Suggestion appears in a faint color as you type)
+# Set style BEFORE sourcing if you want to change it
+# Example: slightly dim grey suggestion color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# --- zsh-syntax-highlighting ---
+# IMPORTANT: this should be near the end of interactive config
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# --- Starship prompt (keep this LAST that touches the prompt) ---
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-export EDITOR="nvim"
-export SUDO_EDITOR="$EDITOR"
-export PGHOST="/var/run/postgresql"
-
-
-export PATH=$PATH:/usr/local/go/bin
-
-HISTFILE=~/.history
-HISTSIZE=10000
-SAVEHIST=50000
-
-setopt inc_append_history
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/.local/share/omarchy/bin:$PATH"
-eval "$(~/.local/bin/mise activate zsh)"
+export SUDO_EDITOR=nvim
+export TERMINAL=kitty
 
-new_tmux () {
-  session_dir=$(zoxide query --list | fzf)
-  session_name=$(basename "$session_dir")
-
-  if tmux has-session -t $session_name 2>/dev/null; then
-    if [ -n "$TMUX" ]; then
-      tmux switch-client -t "$session_name"
-    else
-      tmux attach -t "$session_name"
-    fi
-    notification="tmux attached to $session_name"
-  else
-    if [ -n "$TMUX" ]; then
-      tmux new-session -d -c "$session_dir" -s "$session_name" && tmux switch-client -t "$session_name"
-      notification="new tmux session INSIDE TMUX: $session_name"
-    else
-      tmux new-session -c "$session_dir" -s "$session_name"
-      notification="new tmux session: $session_name"
-    fi
-  fi
-
-  if [-s "$session_name" ]; then
-    notify-send "$notification"
-  fi
-}
-
-alias tm=new_tmux
+# Created by `pipx` on 2025-12-14 16:45:23
+export PATH="$PATH:/home/danilosky/.local/bin"
+export PATH="$PATH:/home/danilosky/bin"
