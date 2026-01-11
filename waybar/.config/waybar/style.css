@@ -9,17 +9,16 @@
 
 window#waybar {
     background: transparent;
-    background-color: @crust;
-    color: @overlay0;
+    background-color: transparent;
+    color: @text;
     transition-property: background-color;
     transition-duration: 0.1s;
-    border-bottom: 1px solid @overlay1;
 }
 
 #window {
     margin: 8px;
-    padding-left: 8;
-    padding-right: 8;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 button {
@@ -77,22 +76,18 @@ button:hover {
 
 #clock {
     color: @maroon;
-    border-bottom: 2px solid @maroon;
 }
 
 #clock.date {
     color: @mauve;
-    border-bottom: 2px solid @mauve;
 }
 
 #pulseaudio {
     color: @blue;
-    border-bottom: 2px solid @blue;
 }
 
 #network {
     color: @yellow;
-    border-bottom: 2px solid @yellow;
 }
 
 #idle_inhibitor {
@@ -106,7 +101,6 @@ button:hover {
 
 #battery {
     color: @green;
-    border-bottom: 2px solid @green;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -119,9 +113,45 @@ button:hover {
     margin-right: 0;
 }
 
+.modules-left,.modules-center, .modules-right {
+  background-color: @crust;
+  margin-top: 7px;
+  border-radius: 20px; 
+  padding: 0 10px
+}
+
+.modules-left {
+  margin-left: 10px;
+}
+
+.modules-right {
+  margin-right: 10px;
+}
+
 #custom-vpn {
     color: @lavender;
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
 }
+
+window#waybar.empty #window {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.modules-center.empty {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+
+/* Sometimes this is needed if the above doesn't work */
+#window.empty {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
