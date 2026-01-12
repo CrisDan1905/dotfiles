@@ -34,6 +34,7 @@ button:hover {
 }
 
 #workspaces button {
+    margin: 0 4px;
     padding: 0 4px;
 }
 
@@ -135,23 +136,7 @@ button:hover {
     padding-right: 6px;
 }
 
-window#waybar.empty #window {
-    background: none;
-    border: none;
-    padding: 0;
-}
-
-.modules-center.empty {
-    background: none;
-    border: none;
-    padding: 0;
-}
-
-
-/* Sometimes this is needed if the above doesn't work */
-#window.empty {
-    background: none;
-    border: none;
-    padding: 0;
+window#waybar.empty .modules-center {  
+     background-color: transparent;
 }
 
