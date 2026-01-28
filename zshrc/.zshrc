@@ -54,3 +54,6 @@ export TERMINAL=kitty
 # Created by `pipx` on 2025-12-14 16:45:23
 export PATH="$PATH:/home/danilosky/.local/bin"
 export PATH="$PATH:/home/danilosky/bin"
+
+# Make PS4 output more useful
+export PS4='$LINENO +'
