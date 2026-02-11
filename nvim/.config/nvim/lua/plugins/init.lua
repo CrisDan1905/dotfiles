@@ -25,4 +25,11 @@ return {
   -- 		},
   -- 	},
   -- },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      local custom = require "custom.configs.cmp"
+      return vim.tbl_deep_extend("force", opts, custom)
+    end,
+  }
 }
