@@ -26,6 +26,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias lla='ls -lA'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+alias restore-hyprlock="hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1' && hyprctl --instance 0 'dispatch exec hyprlock'"
 
 # --- Completion system ---
 autoload -Uz compinit
@@ -37,7 +38,7 @@ compinit
 # Example: slightly dim grey suggestion color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 # --- zsh-syntax-highlighting ---
 # IMPORTANT: this should be near the end of interactive config
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -57,3 +58,5 @@ export PATH="$PATH:/home/danilosky/bin"
 
 # Make PS4 output more useful
 export PS4='$LINENO +'
+
+# Load plugins
