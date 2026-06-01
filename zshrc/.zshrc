@@ -32,6 +32,8 @@ alias restore-hyprlock="hyprctl --instance 0 'keyword misc:allow_session_lock_re
 # --- Completion system ---
 autoload -Uz compinit
 compinit
+# --- Enable case-insensitive completion ---
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # --- zsh-autosuggestions ---
 # (Suggestion appears in a faint color as you type)
