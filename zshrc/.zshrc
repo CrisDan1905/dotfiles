@@ -1,3 +1,5 @@
+source ~/.local/share/omarchy/default/bash/aliases
+
 ##### Things that should run even in non-interactive shells (PATH, exports, etc)
 # export PATH="$HOME/.local/bin:$PATH"
 
@@ -22,7 +24,6 @@ setopt histignoredups   # don't store duplicate history entries
 setopt sharehistory     # share history between shells
 
 # --- Aliases ---
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias lla='ls -lA'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
@@ -38,7 +39,7 @@ compinit
 # Example: slightly dim grey suggestion color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+# source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 # --- zsh-syntax-highlighting ---
 # IMPORTANT: this should be near the end of interactive config
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -50,7 +51,7 @@ eval "$(starship init zsh)"
 source <(fzf --zsh)
 
 export SUDO_EDITOR=nvim
-export TERMINAL=kitty
+export TERMINAL=ghostty
 
 # Created by `pipx` on 2025-12-14 16:45:23
 export PATH="$PATH:/home/danilosky/.local/bin"
